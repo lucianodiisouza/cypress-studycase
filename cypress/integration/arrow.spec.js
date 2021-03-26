@@ -17,6 +17,7 @@ it("nada agora", function () {});
 const soma = (a) => a + a;
 console.log(soma(1));
 
+
 it("a function test...", function () {
   console.log("Function", this);
 });

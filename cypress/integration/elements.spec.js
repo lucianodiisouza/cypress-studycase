@@ -1,6 +1,14 @@
 describe('Work with basic elements', () => {
-    it('Text', () => {
+    before(() => {
         cy.visit('http://wcaquino.me/cypress/componentes.html')
+    })
+
+    beforeEach(() => {
+        // cy.visit('http://wcaquino.me/cypress/componentes.html')
+        cy.reload()
+    })
+
+    it('Text', () => {
 
         // searching in entire page body
         cy.get('body')
@@ -16,8 +24,8 @@ describe('Work with basic elements', () => {
         cy.get('.facilAchar').should('have.text', 'Cuidado onde clica, muitas armadilhas...')
     })
 
-    it.only('Links', () => {
-        cy.visit('http://wcaquino.me/cypress/componentes.html')
+    it('Links', () => {
+
         cy.get('[href="#"]').click()
         // cy.get('a').click()
         cy.get('#resultado').should('have.text', 'Voltou!')
@@ -26,5 +34,9 @@ describe('Work with basic elements', () => {
         cy.get('#resultado').should('not.have.text', 'Voltou!')
         cy.contains('Voltar').click()
         cy.get('#resultado').should('have.text', 'Voltou!')
+    })
+
+    it("Hooks", () => {
+
     })
 })

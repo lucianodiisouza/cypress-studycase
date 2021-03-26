@@ -1,15 +1,17 @@
 it("sem testes ainda...", () => {});
 
 const getAlgo = (callback) => {
-	return new Promise()
-  setTimeout(() => {
-    callback(11);
-  }, 1000);
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(13);
+    }, 1000);
+  });
 };
 
 const sistema = async () => {
   console.log("iniciando...");
-  getAlgo((some) => console.log(`Algo é ${some}`));
+  const some = await getAlgo();
+  console.log(`Algo é ${some}`);
   console.log("fim");
 };
 

@@ -41,4 +41,12 @@ describe('Cypress Basics', () => {
             .should('be.equal', 'Campo de Treinamento')
             .and('contain', 'Campo')
     })
+
+    it.only("Should find and interact with an element", () => {
+        cy.visit('http://wcaquino.me/cypress/componentes.html')
+
+        cy.get('#buttonSimple')
+            .click()
+            .should('have.value', 'Obrigado!')
+    })
 })

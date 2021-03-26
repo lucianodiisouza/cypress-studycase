@@ -1,7 +1,7 @@
 // resource: http://wcaquino.me/cypress/componentes.html
 
 describe('Cypress Basics', () => {
-    it('Should visit a page and assert title', () => {
+    it.only('Should visit a page and assert title', () => {
         cy.visit('http://wcaquino.me/cypress/componentes.html')
 
         /**
@@ -13,8 +13,9 @@ describe('Cypress Basics', () => {
         // const title = cy.title()
         // console.log(title)
 
-        cy.title().then(res => console.log(res))
+        // cy.title().then(res => console.log(res))
 
+        cy.pause();
 
         /**
          *  This works
@@ -42,7 +43,7 @@ describe('Cypress Basics', () => {
             .and('contain', 'Campo')
     })
 
-    it.only("Should find and interact with an element", () => {
+    it("Should find and interact with an element", () => {
         cy.visit('http://wcaquino.me/cypress/componentes.html')
 
         cy.get('#buttonSimple')

@@ -1,5 +1,4 @@
 // resource: http://wcaquino.me/cypress/componentes.html
-
 describe("Cypress Basics", () => {
   it("Should visit a page and assert title", () => {
     cy.visit("http://wcaquino.me/cypress/componentes.html");
@@ -57,6 +56,27 @@ describe("Cypress Basics", () => {
 
     cy.title().should((title) => {
       console.log(title);
+    });
+  });
+
+  it.only("Should type title inside any input", () => {
+    cy.visit("http://wcaquino.me/cypress/componentes.html");
+
+    let syncTitle;
+    cy.title().then((title) => {
+      console.log(title);
+
+      cy.get("#formNome").type(title);
+
+      syncTitle = title;
+    });
+
+    // cy.get("[data-cy=dataSobrenome]").then(($el) => {
+    //   $el.val(syncTitle);
+    // });
+
+    cy.get("[data-cy=dataSobrenome]").then(($el) => {
+      cy.wrap($el).type(syncTitle);
     });
   });
 });

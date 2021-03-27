@@ -29,9 +29,21 @@ describe("Helpers", () => {
     // We dont control execution order using promises outside cypress way
     // promise.then((num) => console.log(num));
 
-	// wrap brings cypress resources to elements
+    // wrap brings cypress resources to elements
     cy.wrap(promise).then((num) => console.log(num));
 
     cy.get("#buttonList").then(() => console.log("Achei o 2o."));
+  });
+
+  it.only("Its...", () => {
+    const obj = { nome: "user", idade: 22 };
+    cy.wrap(obj).should("have.property", "nome", "user");
+    cy.wrap(obj).its("nome").should("be.equal", "user");
+
+    const objB = { nome: "user", idade: 22, endereco: { rua: "teste" } };
+    cy.wrap(objB).its("endereco.rua").should("contain", "teste");
+
+    cy.visit("http://wcaquino.me/cypress/componentes.html");
+    cy.title().its("length").should("be.equal", 20);
   });
 });

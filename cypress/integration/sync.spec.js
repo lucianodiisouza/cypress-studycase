@@ -20,17 +20,34 @@ describe("Wait...", () => {
     cy.get("#novoCampo").should("not.exist").should("exist");
   });
 
-  it.only("Uso do find", () => {
+  it("Find use-case", () => {
     cy.get("#buttonList").click();
 
     cy.get("#lista li").find("span").should("contain", "Item 1");
-    
-	/*
+
+    /*
      * This dont work cause the find command has limited scope to the first item
      */
 
     // cy.get("#lista li").find("span").should("contain", "Item 2");
 
     cy.get("#lista li span").should("contain", "Item 2");
+  });
+
+  it.only("Timeout use-case", () => {
+    // cy.get("#buttonDelay").click();
+    // cy.get("#novoCampo", { timeout: 1000}).should("exist");
+
+    // cy.get("#buttonListDOM").click();
+    // Avoid use wait, because wait stops application,
+    // instead it use timeout inside the assert, cause timeout will
+    // wait until the specified time, while wait will stop application
+    // for the specified time.
+
+    // cy.wait(5000);
+    // cy.get("#lista li span", { timeout: 30000 }).should("contain", "Item 2");
+
+    cy.get("#buttonListDOM").click();
+    cy.get("#lista li span", { timeout: 30000 }).should("have.length", 1);
   });
 });

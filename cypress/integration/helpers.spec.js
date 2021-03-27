@@ -26,10 +26,10 @@ describe("Helpers", () => {
     });
 
     cy.get("#buttonSimple").then(() => console.log("Achei o 1o."));
-    // Não teremos controle sobre a ordem de execução
+    // We dont control execution order using promises outside cypress way
     // promise.then((num) => console.log(num));
 
-	// o wrap tras os recursos do cypress para um elemento
+	// wrap brings cypress resources to elements
     cy.wrap(promise).then((num) => console.log(num));
 
     cy.get("#buttonList").then(() => console.log("Achei o 2o."));

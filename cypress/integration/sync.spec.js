@@ -34,7 +34,7 @@ describe("Wait...", () => {
     cy.get("#lista li span").should("contain", "Item 2");
   });
 
-  it.only("Timeout use-case", () => {
+  it("Timeout use-case", () => {
     // cy.get("#buttonDelay").click();
     // cy.get("#novoCampo", { timeout: 1000}).should("exist");
 
@@ -49,5 +49,16 @@ describe("Wait...", () => {
 
     cy.get("#buttonListDOM").click();
     cy.get("#lista li span", { timeout: 30000 }).should("have.length", 1);
+  });
+
+  it("Click retry", () => {
+    cy.get("#buttonCount").click().click().should("have.value", "111");
+  });
+
+  it.only("Should vs Then", () => {
+    cy.get("#buttonListDOM").click();
+    cy.get("#lista li span").then(($el) => {
+      expect($el).to.have.length(1);
+    });
   });
 });
